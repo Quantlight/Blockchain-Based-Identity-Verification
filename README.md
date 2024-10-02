@@ -9,7 +9,7 @@ git clone https://github.com/Quantlight/Blockchain-Based-Identity-Verification.g
 ```
 ### 2. Install all the necessary module required
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```  
 ### 3. Run the python virtual Environment in the root Folder
 ```
