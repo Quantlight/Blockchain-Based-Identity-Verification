@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Identity Verification</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Blockchain Identity Verification</h1>
+    
+    <h2>Submit Identity</h2>
+    <form id="submitForm">
+        <label for="identity">Identity:</label>
+        <input type="text" id="identity" name="identity" required>
+        <label for="details">Details:</label>
+        <input type="text" id="details" name="details" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Verify Identity</h2>
+    <form id="verifyForm">
+        <label for="verifyIdentity">Identity:</label>
+        <input type="text" id="verifyIdentity" name="identity" required>
+        <button type="submit">Verify</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('submitForm').onsubmit = async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/submit_identity', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+        };
+
+        document.getElementById('verifyForm').onsubmit = async function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const response = await fetch('/verify_identity', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+        };
+    </script>
+</body>
+</html>
+
